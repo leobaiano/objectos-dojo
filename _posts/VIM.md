@@ -7,7 +7,7 @@ tags:
 - aprendizes
 ---
 
-#Um pouco de História# 
+# Um pouco de História # 
 
   Antes de falarmos sobre "VIM" vamos falar um pouco de seu antecessor o "VI". "VI" é a sigla para "Visual Interface". 
 A origem desse nome se deve ao seguinte fato: quando o "VI" foi criado (começo da década de 80), não era comum existirem
