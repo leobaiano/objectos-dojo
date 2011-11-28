@@ -13,68 +13,63 @@ tags:
 
 Dada a seguinte Enum:
 
-        public enum Estagiario{
-                AFONSO,
-                HELLEN,
-                MARCOS
-        }
-
-O teste de enum será parecido com isso:
-
-    List<ListaDeEstagiario> res = consulta.list();
-    List<Nome> nomes = transform(res, new ToNome());
-
-    assertThat(nomes.size(), equalTo(3));
-    assertThat(nomes.get(0), equalTo(Estagiario.AFONSO));
-    assertThat(nomes.get(1), equalTo(Estagiario.HELLEN));
-    assertThat(nomes.get(2), equalTo(Estagiario.MARCOS));
-
-    private class ToNome implements Function<ListaDeEstagiarios, Estagiario> {
-        @Override
-        public Estagiario apply(ListaDeEstagiarios input) {
-          return input.Estagiario;
-        }
-    }
+	public enum Departamento {
+	  ENGENHARIA,
+	  FINANCEIRO,
+	  CONTABILIDADE
+	}
 
 O tipo dessa Enum pode estar definida de duas maneiras no JPA. ORDINAL ou STRING.
 
 No caso de uma Enum do tipo ORDINAL, ela estará gravada da seguinte maneira no banco de dados:
 
-    +-----------+------------+
-    | MATRICULA | ESTAGIARIO |
-    +-----------+------------+
-    |  31256    |     0      |
-    |  51476    |     1      |
-    |  32569    |     2      |
-    +-----------+------------+
+	<EMPRESA.FUNCIONARIO MATRICULA="31256" NOME="AFONSO" DEPARTAMENTO="0"/>
+	<EMPRESA.FUNCIONARIO MATRICULA="51476" NOME="HELLEN" DEPARTAMENTO="1"/>
+	<EMPRESA.FUNCIONARIO MATRICULA="32569" NOME="MARCOS" DEPARTAMENTO="2"/>
 
-Nesse caso, 0 = AFONSO, 1 = HELLEN e 2 = MARCOS. Seguindo a ordem que as propriedades são definidas no código.
+Nesse caso, 0 = ENGENHARIA, 1 = FINANCEIRO e 2 = CONTABILIDADE. Seguindo a ordem que as propriedades são definidas no código.
 
 No caso de uma Enum do tipo STRING, ela estará gravada da seguinte maneira do banco de dados
 
-    +-----------+------------+
-    | MATRICULA | ESTAGIARIO |
-    +-----------+------------+
-    |  31256    |   AFONSO   |
-    |  51476    |   HELLEN   |
-    |  32569    |   MARCOS   |
-    +-----------+------------+
+	<EMPRESA.FUNCIONARIO MATRICULA="31256" NOME="AFONSO" DEPARTAMENTO="ENGENHARIA"/>
+	<EMPRESA.FUNCIONARIO MATRICULA="51476" NOME="HELLEN" DEPARTAMENTO="FINANCEIRO"/>
+	<EMPRESA.FUNCIONARIO MATRICULA="32569" NOME="MARCOS" DEPARTAMENTO="CONTABILIDADE"/>
 
 Observe que nesse caso de uma Enum do tipo String, as propriedades gravadas no banco de dados são idênticas as do código.
 
+O teste de enum será parecido com isso:
+
+    public void listar_departamento() {
+      List<Funcionario> res = consulta.list();
+      List<Departamento> deps = transform(res, new ToDepartamento());
+     
+      assertThat(deps.size(), equalTo(3));
+      assertThat(deps.get(0), equalTo(Departamento.ENGENHARIA));
+      assertThat(deps.get(1), equalTo(Departamento.FINANCEIRO));
+      assertThat(deps.get(2), equalTo(Departamento.CONTABILIDADE));
+    }
+
+    private class ToDepartamento implements Function<Funcionario, Departamento> {
+      @Override
+      public Departamento apply(Funcionario input) {
+        return input.getDepartamento();
+      }
+    }
+  
+  
 Caso o tipo da Enum esteja definido como ORDINAL, utilizamos o seguinte código para conversão: 
 
-    public Nome getNome() {
-      int value = rs.getInt("TABELA.NOME");
-      Nome[] values = Nome.values();
+    public Departamento getDepartamento() {
+      int value = rs.getInt("FUNCIONARIO.DEPARTAMENTO");
+      Departamento[] values = Departamento.values();
       return values[value];
     }
 
 
 Caso o tipo da Enum esteja definido como STRING, utilizamos o seguinte código para conversão:
 
-    public Nome getNome() {
-      String val = rs.getString("TABELA.NOME");
-      Nome res = Nome.valueOf(val);
+    public Departamento getDepartamento() {
+      String val = rs.getString("FUNCIONARIO.DEPARTAMENTO");
+      Departamento res = Departamento.valueOf(val);
       return res;
     }
