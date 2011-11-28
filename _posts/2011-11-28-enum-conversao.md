@@ -35,7 +35,7 @@ No caso de uma Enum do tipo STRING, ela estará gravada da seguinte maneira do b
 	<EMPRESA.FUNCIONARIO MATRICULA="51476" NOME="HELLEN" DEPARTAMENTO="FINANCEIRO"/>
 	<EMPRESA.FUNCIONARIO MATRICULA="32569" NOME="MARCOS" DEPARTAMENTO="CONTABILIDADE"/>
 
-Observe que nesse caso de uma Enum do tipo String, as propriedades gravadas no banco de dados são idênticas as do código.
+Observe que no caso de uma Enum do tipo String, as propriedades gravadas no banco de dados são idênticas as do código.
 
 O teste de enum será parecido com isso:
 
