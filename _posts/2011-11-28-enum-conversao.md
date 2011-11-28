@@ -75,5 +75,5 @@ Caso o tipo da Enum esteja definido como STRING, utilizamos o seguinte código p
     }
     
 Para mais informações, acessar os códigos através dos diretórios abaixo: <br>
-<a href="https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc">objectos-dojo-team/src/main/java/...</a><br>
-<a href="https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/afilgueiras/enum_jdbc">objectos-dojo-team/src/test/java/...</a><br>
+[objectos-dojo-team/src/main/java/...](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc)<br>
+[objectos-dojo-team/src/test/java/...](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/afilgueiras/enum_jdbc)
