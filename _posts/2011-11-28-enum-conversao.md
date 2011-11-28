@@ -1,7 +1,7 @@
 ---
 layout: post-alpha
 title: "Enum :: Conversão de Enum"
-autor: "Afonso Jardim Filgueiras"
+author: "Afonso Jardim Filgueiras"
 published: true 
 tags:
 - dojo
@@ -74,8 +74,6 @@ Caso o tipo da Enum esteja definido como STRING, utilizamos o seguinte código p
       return res;
     }
     
-Para mais informações, acessar os códigos através do link: <br>
-<a href="https://github.com/objectos/objectos-dojo/blob/96619b421ade45a507e6faa1d87fd55a7a4d2024/objectos-dojo-team/src/test/java/br/com/objectos/dojo/afilgueiras/enum_jdbc/ArtigoDeEnumJdbc.java">Asserts de Enum</a><br>
-<a href="https://github.com/objectos/objectos-dojo/blob/96619b421ade45a507e6faa1d87fd55a7a4d2024/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc/Funcionario.java">Funcionario</a><br>
-<a href="https://github.com/objectos/objectos-dojo/blob/96619b421ade45a507e6faa1d87fd55a7a4d2024/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc/Departamento.java">Enum Departamento</a><br>
-<a href="https://github.com/objectos/objectos-dojo/blob/96619b421ade45a507e6faa1d87fd55a7a4d2024/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc/ConsultaDeFuncionario.java">Consulta de Funcionário</a>
+Para mais informações, acessar os códigos através dos diretórios abaixo: <br>
+[objectos-dojo-team/src/main/java/...](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/afilgueiras/enum_jdbc)<br>
+[objectos-dojo-team/src/test/java/...](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/afilgueiras/enum_jdbc)
