@@ -2,6 +2,7 @@
 layout: post-alpha
 title: "Enum :: Conversão de Enum"
 author: "Afonso Jardim Filgueiras"
+user: "afilgueiras"
 published: true 
 tags:
 - dojo

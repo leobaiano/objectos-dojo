@@ -1,39 +1,23 @@
 <!doctype html>
 <html>
-  {% include head.html %}  
+  
+  {% include head.html %}
+    
   <body>
-    <div id="hd" class="topbar">
-      <div class="topbar-inner">
-        <div class="container">
-          <a href="http://dojo.objectos.com.br" class="brand">
-            objectos doj&ocirc;
-          </a>
-          <ul class="nav">
-            <li>
-              <a href="#aprendizes">Aprendizes</a>
-            </li>
-            <li>
-              <a href="#git">Git</a>
-            </li>
-          </ul>
-        </div>
+  
+    <div id="hd">
+      <div class="container">
+        <a href="http://dojo.objectos.com.br" class="brand">
+          <img src="{{ site.baseurl }}/img/logo-blog.png" alt="objectos dojô" />
+        </a>
       </div>
     </div>
-    <div id="bd" class="container">
+    
+    <div id="bd">
       {{ content }}
     </div>
-    <div id="ft">
-      <div class="container">
-        <p>Todo o conteúdo deste site:</p>
-
-        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Licença Creative Commons"
-        style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a><br />Esta obra foi
-        licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative
-        Commons - Atribuição - Uso Não Comercial - Obras Derivadas Proibidas 3.0 Não Adaptada</a>.
-        </p>
-
-        <p>&copy; 2011 objectos, Fábrica de Software LTDA</p>
-      </div>
-    </div>
+    
+    {% include obj-ft.html %}
+    
   </body>
 </html>
