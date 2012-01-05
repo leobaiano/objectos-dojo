@@ -1,23 +1,49 @@
 ---
 layout: default
 ---
+<div class="container page">
+  <div class="row">
+    <div class="span10">
+      
+      <div class="post-meta">
+        <h1>{{ page.title }}</h1>
+        <h2>{{ page.author }} <small>em {{ page.date | date: "%d/%m/%Y"}}</small></h2>
+      </div>
+  
+      <div class="alert-message warning">
+        <p><strong>Versão ALPHA!</strong> Este artigo está em versão 'Alpha' e, portanto, 
+        não foi ainda revisado corretamente</p>
+      </div>
+      
+      <div class="post">
+      {{ content }}
+      </div>
+      
+    </div>
+    
+    <div class="offset1 span5">
+      <h4>Indíce</h4>
+    
+      <h4>Sobre o autor(a):</h4>
+    
+      {% if page.user == 'afilgueiras' %}
+        
+        {% include gravatar-afilgueiras.html %}
+        
+      {% elsif page.user == 'hescarate' %}
+      
+        {% include gravatar-hescarate.html %}
 
-<div class="post-meta row">
-  <div class="span14 columns offset1">
-    <h1>{{ page.title }}</h1>
-    <h2>{{ page.author }} <small>em {{ page.date | date: "%d/%m/%Y"}}</small></h2>
-  </div>
-</div>
-<div class="row">
-  <div class="span14 columns offset1">
-  <div class="alert-message warning">
-    <p><strong>Versão ALPHA!</strong> Este artigo está em versão 'Alpha' e, portanto, 
-    não foi ainda revisado corretamente</p>
-  </div>
-  </div>
-</div>
-<div class="post row">
-  <div class="span14 columns offset1">
-    {{ content }}
+      {% elsif page.user == 'mendo' %}
+      
+        {% include gravatar-mendo.html %}
+
+      {% elsif page.user == 'mpiazzolla' %}
+      
+        {% include gravatar-mpiazzolla.html %}
+      
+      {% endif %}      
+    
+    </div>
   </div>
 </div>
