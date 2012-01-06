@@ -15,18 +15,18 @@ tags:
 
 ## Stack Traces
 
-Muitas vezes quando desenvolvemos um aplicativo existem situaÁıes onde o inusitado acontece, a aplicaÁ„o para e uma
-mensagem assustadora de erro acaba surgindo no terminal, a mensagem È t„o grande que logo entramos em desespero n„o 
-sabendo por onde comeÁar a leitura do "erro", estas mensagens que s„o "assustadoras" s„o conhecidas como Stack Traces e
-pra falar a verdade elas n„o s„o t„o assustadoras assim, seu objetivo È apenas dar ao desenvolvedor um feedback do que 
-aconteceu na aplicaÁ„o mas muitas vezes o tamanho da Stack Trace acaba assustando. As Stack Traces s„o nossas amigas e
+Muitas vezes quando desenvolvemos um aplicativo existem situa√ß√µes onde o inusitado acontece, a aplica√ß√£o para e uma
+mensagem assustadora de erro acaba surgindo no terminal, a mensagem √© t√£o grande que logo entramos em desespero n√£o 
+sabendo por onde come√ßar a leitura do "erro", estas mensagens que s√£o "assustadoras" s√£o conhecidas como Stack Traces e
+pra falar a verdade elas n√£o s√£o t√£o assustadoras assim, seu objetivo √© apenas dar ao desenvolvedor um feedback do que 
+aconteceu na aplica√ß√£o mas muitas vezes o tamanho da Stack Trace acaba assustando. As Stack Traces s√£o nossas amigas e
 aparecem para nos ajudar, vamos deixar de lado o medo e entender de vez o que uma Stack Trace nos mostra.
-Mas antes mesmo de comeÁar a tratar de Stack Traces e forÁar erros para que as mesmas ocorram, vamos falar de um 
-conceito que ser· de grande ajuda para o entendimento do que foi dito acima, vamos falar sobre a pilha de execuÁıes.
+Mas antes mesmo de come√ßar a tratar de Stack Traces e for√ßar erros para que as mesmas ocorram, vamos falar de um 
+conceito que ser√° de grande ajuda para o entendimento do que foi dito acima, vamos falar sobre a pilha de execu√ß√µes.
 	
-## Pilha de ExecuÁıes 
+## Pilha de Execu√ß√µes 
 
-Vamos utilizar um exemplo para esclarecer este conceito de pilha de execuÁ„o, atente a amostra de cÛdigo abaixo:
+Vamos utilizar um exemplo para esclarecer este conceito de pilha de execu√ß√£o, atente a amostra de c√≥digo abaixo:
 
     package com.objectos.stacktraces;  
 	
@@ -36,50 +36,50 @@ Vamos utilizar um exemplo para esclarecer este conceito de pilha de execuÁ„o, at
        }
 
        static void metodoA() {
-       System.out.println("MÈtodo A");
+       System.out.println("M√©todo A");
        metodoB();
        }
 
        static void metodoB() {
-       System.out.println("MÈtodo B");
+       System.out.println("M√©todo B");
        }
     }
 
-Todo programa java possui a tal "pilha de execuÁıes", mas afinal de contas o que È "esta pilha de execuÁıes" ? A Grosso
-modo È onde todas as chamadas de mÈtodos em um programa java est„o, vamos analisar o trecho acima. 
-Quando o programa acima for compilado e executado o mesmo ir· realizar uma sÈrie de chamadas aos seus respectivos
-mÈtodos, logo o java organiza as chamadas aos mÈtodos em uma estrutura muito conhecida na ·rea de desenvolvimento de
-software, a pilha. Assim quando o programa acima for executado todas as chamadas de mÈtodos ser„o movidas para a pilha e
-executadas do topo da pilha atÈ a base, no caso o mÈtodo principal de nosso programa acima.
+Todo programa java possui a tal "pilha de execu√ß√µes", mas afinal de contas o que √© "esta pilha de execu√ß√µes" ? A Grosso
+modo √© onde todas as chamadas de m√©todos em um programa java est√£o, vamos analisar o trecho acima. 
+Quando o programa acima for compilado e executado o mesmo ir√° realizar uma s√©rie de chamadas aos seus respectivos
+m√©todos, logo o java organiza as chamadas aos m√©todos em uma estrutura muito conhecida na √°rea de desenvolvimento de
+software, a pilha. Assim quando o programa acima for executado todas as chamadas de m√©todos ser√£o movidas para a pilha e
+executadas do topo da pilha at√© a base, no caso o m√©todo principal de nosso programa acima.
 
-A pilha de execuÁ„o do programa acima ficaria da seguinte forma:
-Inicio do programa, no mÈtodo principal È efetuada a chamada ao mÈtodoA() logo o mesmo segue ao topo da pilha, seguindo
-o fluxo do programa o metodoA() È executado e acaba fazendo uma chamada ao metodoB() que por sua vez assume o topo, o
-metodoB() È executado e acaba deixando a pilha, dando passagem ao metodoA() que novamente assume o topo, apÛs a execuÁ„o
-do mÈtodo o fluxo volta ao mÈtodo principal que tambÈm estava na pilha, lembrando que a pilha armazena todas as chamadas
-de mÈtodos (main() tambÈm È um mÈtodo). Assim a pilha de execuÁıes acaba junto com o programa que por sua vez acaba
+A pilha de execu√ß√£o do programa acima ficaria da seguinte forma:
+Inicio do programa, no m√©todo principal √© efetuada a chamada ao m√©todoA() logo o mesmo segue ao topo da pilha, seguindo
+o fluxo do programa o metodoA() √© executado e acaba fazendo uma chamada ao metodoB() que por sua vez assume o topo, o
+metodoB() √© executado e acaba deixando a pilha, dando passagem ao metodoA() que novamente assume o topo, ap√≥s a execu√ß√£o
+do m√©todo o fluxo volta ao m√©todo principal que tamb√©m estava na pilha, lembrando que a pilha armazena todas as chamadas
+de m√©todos (main() tamb√©m √© um m√©todo). Assim a pilha de execu√ß√µes acaba junto com o programa que por sua vez acaba
 imprimindo:
 
-    MÈtodo A
-    MÈtodo B
+    M√©todo A
+    M√©todo B
 
-Agora que sabemos o que È a pilha de execuÁıes e como as coisas funcionam em um programa Java, podemos dar continuidade
-ao que est·vamos discutindo anteriormente. As Stack Traces.
+Agora que sabemos o que √© a pilha de execu√ß√µes e como as coisas funcionam em um programa Java, podemos dar continuidade
+ao que est√°vamos discutindo anteriormente. As Stack Traces.
 
 ## Como as Stack Traces ocorrem ?
 
-As Stack Traces surgem toda vez que o fluxo de um programa na pilha de execuÁıes È interrompido por uma exceÁ„o, assim a
-mensagem de erro È lanÁada apontando todo o fluxo da pilha de execuÁıes e os possÌveis pontos onde a exceÁ„o ocorreu. 
+As Stack Traces surgem toda vez que o fluxo de um programa na pilha de execu√ß√µes √© interrompido por uma exce√ß√£o, assim a
+mensagem de erro √© lan√ßada apontando todo o fluxo da pilha de execu√ß√µes e os poss√≠veis pontos onde a exce√ß√£o ocorreu. 
 
 Mas como algo assim pode ocorrer?
 
-Isso È bem simples, lembrando que exceÁıes podem ocorrer por conta de simples erros que cometemos como por exemplo:
-tentar dividir um valor por zero, acessar um Ìndice inexistente de um vetor ou atÈ mesmo tentar acessar uma vari·vel de
-referÍncia que n„o aponte para um objeto.
+Isso √© bem simples, lembrando que exce√ß√µes podem ocorrer por conta de simples erros que cometemos como por exemplo:
+tentar dividir um valor por zero, acessar um √≠ndice inexistente de um vetor ou at√© mesmo tentar acessar uma vari√°vel de
+refer√™ncia que n√£o aponte para um objeto.
 
-Em situaÁıes como essas exceÁıes s„o lanÁadas e Stack Traces acabam aparecendo.
-Vamos forÁar uma exceÁ„o e nos aprofundar um pouco mais sobre o assunto. Para isso vamos reaproveitar o exemplo acima e
-adicionar o bloco respons·vel pela exceÁ„o.
+Em situa√ß√µes como essas exce√ß√µes s√£o lan√ßadas e Stack Traces acabam aparecendo.
+Vamos for√ßar uma exce√ß√£o e nos aprofundar um pouco mais sobre o assunto. Para isso vamos reaproveitar o exemplo acima e
+adicionar o bloco respons√°vel pela exce√ß√£o.
 
     package com.objectos.stacktraces;
 
@@ -89,50 +89,50 @@ adicionar o bloco respons·vel pela exceÁ„o.
        }
 
        static void metodoA() {
-          System.out.println("MÈtodo A");
+          System.out.println("M√©todo A");
 	  metodoB();
        } 
 
        static void metodoB() {
           int x = 2, y = 0;
 	  int z = x / y;
-	  System.out.println(z);//ExceÁ„o!!!!!!!!
-	  System.out.println("MÈtodo B");
+	  System.out.println(z);//Exce√ß√£o!!!!!!!!
+	  System.out.println("M√©todo B");
        }
     }
 
-Compilamos o programa e ent„o veja sÛ o que acontece:
+Compilamos o programa e ent√£o veja s√≥ o que acontece:
 
-    MÈtodo A
+    M√©todo A
     Exception in thread "main" java.lang.ArithmeticException: / by zero
         at com.objectos.stacktraces.Stack.metodoB(Stack.java:24)
         at com.objectos.stacktraces.Stack.metodoA(Stack.java:19)
         at com.objectos.stacktraces.Stack.main(Stack.java:14)
     Java Result: 1
 	
-Temos o nosso Stack Trace mostrando a pilha de execuÁ„o, vamos analisar com calma o que aconteceu e pensar em uma forma
+Temos o nosso Stack Trace mostrando a pilha de execu√ß√£o, vamos analisar com calma o que aconteceu e pensar em uma forma
 de tratar este problema.
-No topo da pilha temos o ponto onde a exceÁ„o ocorreu, que foi exatamente no metodoB(), como n„o tratamos a exceÁ„o
-(falaremos disso mais adiante) ela acabou passando para o prÛximo elemento da pilha, o metodoA() que fez a chamada ao
-metodoB() o causador de nossos problemas, mas o metodoA() assim como seu antecessor na pilha n„o trata a exceÁ„o
-deixando isso a critÈrio do mÈtodo principal, como o mÈtodo principal n„o possui nenhuma tratativa para a exceÁ„o
+No topo da pilha temos o ponto onde a exce√ß√£o ocorreu, que foi exatamente no metodoB(), como n√£o tratamos a exce√ß√£o
+(falaremos disso mais adiante) ela acabou passando para o pr√≥ximo elemento da pilha, o metodoA() que fez a chamada ao
+metodoB() o causador de nossos problemas, mas o metodoA() assim como seu antecessor na pilha n√£o trata a exce√ß√£o
+deixando isso a crit√©rio do m√©todo principal, como o m√©todo principal n√£o possui nenhuma tratativa para a exce√ß√£o
 teremos um belo Stack Trace na tela quando o programa for executado.
 
-Falamos muito sobre o nosso Stack Trace acima, mas ainda fica a duvida. Como ele poder· nos ajudar?
-O Stack Trace pode, n„o, ele vai nos ajudar na trativa de exceÁıes e erros que ocorrem ao decorrer da aplicaÁ„o, como
-por exemplo acima, se lermos o Stack Trace podemos perceber que a mensagem de "erro" apareceu na tela por alguÈm tentar
-realizar uma operaÁ„o matem·tica ilegal, lendo a primeira linha percebemos isso quando encontramos "ArithmeticException:
-/by zero" e de quebra percebemos que fora uma divis„o por zero, algo que n„o existe!
+Falamos muito sobre o nosso Stack Trace acima, mas ainda fica a duvida. Como ele poder√° nos ajudar?
+O Stack Trace pode, n√£o, ele vai nos ajudar na trativa de exce√ß√µes e erros que ocorrem ao decorrer da aplica√ß√£o, como
+por exemplo acima, se lermos o Stack Trace podemos perceber que a mensagem de "erro" apareceu na tela por algu√©m tentar
+realizar uma opera√ß√£o matem√°tica ilegal, lendo a primeira linha percebemos isso quando encontramos "ArithmeticException:
+/by zero" e de quebra percebemos que fora uma divis√£o por zero, algo que n√£o existe!
 
-Agora ficou f·cil pois encontramos o causador de nossos problemas, o prÛximo passo È tratar a exceÁ„o para que este erro
-jamais aconteÁa novamente.
+Agora ficou f√°cil pois encontramos o causador de nossos problemas, o pr√≥ximo passo √© tratar a exce√ß√£o para que este erro
+jamais aconte√ßa novamente.
 	
 ## Corrigindo o problema 
 
-Conseguimos forÁar nossa exceÁ„o para que uma Stack Trace ocorresse, mas como evitar que algo assim acabe acontecendo?
+Conseguimos for√ßar nossa exce√ß√£o para que uma Stack Trace ocorresse, mas como evitar que algo assim acabe acontecendo?
 
-Isso È bem simples basta utilizar uma tratativa de exceÁıes, um bloco try/catch, que È respons·vel em capturar uma ou
-mais exceÁıes e fazer algo sempre que a exceÁ„o ocorrer, em nosso caso vamos mostrar que n„o existe divis„o por ZERO. 
+Isso √© bem simples basta utilizar uma tratativa de exce√ß√µes, um bloco try/catch, que √© respons√°vel em capturar uma ou
+mais exce√ß√µes e fazer algo sempre que a exce√ß√£o ocorrer, em nosso caso vamos mostrar que n√£o existe divis√£o por ZERO. 
 Vamos adicionar um bloco try/catch ao programa acima e analisar o resultado.
 
     package com.objectos.stacktraces;
@@ -143,7 +143,7 @@ Vamos adicionar um bloco try/catch ao programa acima e analisar o resultado.
        }
 
        static void metodoA() {
-          System.out.println("MÈtodo A");
+          System.out.println("M√©todo A");
              metodoB();
        }
 
@@ -153,28 +153,28 @@ Vamos adicionar um bloco try/catch ao programa acima e analisar o resultado.
              int z = x / y;
              System.out.println(z);
 	     catch(ArithmeticException ae ) {
-	        System.out.println("N„o existe divis„o por Zero!!!!");
+	        System.out.println("N√£o existe divis√£o por Zero!!!!");
              }
-                   System.out.println("MÈtodo B");
+                   System.out.println("M√©todo B");
               }
        }
 
-Atente para a saÌda:
+Atente para a sa√≠da:
 
-    MÈtodo A
-    N„o existe divis„o por zero!!!
-    MÈtodo B
+    M√©todo A
+    N√£o existe divis√£o por zero!!!
+    M√©todo B
 	
-Agora as coisas parecem bem melhores, temos nossa exceÁ„o tratada, o programa funciona normalmente e uma tratativa de
-exceÁıes com uma mensagem bem elegante sempre que algo de errado acontecer. Tudo isso graÁas aquela mensagem de erro
-"medonha" que muitos se apavoram sÛ de ver, percebemos aqui que o Stack Trace È realmente o nosso amigo e com ele
-podemos corrigir falhas em nossas aplicaÁıes pois o mesmo nos indica todo o fluxo do programa atravÈs da pilha de
-execuÁıes e os respectivos pontos onde ocorreram as exceÁıes, com isso ele deixou de ser apenas uma mensagem de erro e 
+Agora as coisas parecem bem melhores, temos nossa exce√ß√£o tratada, o programa funciona normalmente e uma tratativa de
+exce√ß√µes com uma mensagem bem elegante sempre que algo de errado acontecer. Tudo isso gra√ßas aquela mensagem de erro
+"medonha" que muitos se apavoram s√≥ de ver, percebemos aqui que o Stack Trace √© realmente o nosso amigo e com ele
+podemos corrigir falhas em nossas aplica√ß√µes pois o mesmo nos indica todo o fluxo do programa atrav√©s da pilha de
+execu√ß√µes e os respectivos pontos onde ocorreram as exce√ß√µes, com isso ele deixou de ser apenas uma mensagem de erro e 
 se tornou em um grande aliado nosso.
 
-## ReferÍncias
+## Refer√™ncias
 
-* SIERRA, Kathy. BATES, Berty. Use a CabeÁa, Segunda ediÁ„o
+* SIERRA, Kathy. BATES, Berty. Use a Cabe√ßa, Segunda edi√ß√£o
 
 * [Macoli](http://macoli.wordpress.com/2010/02/20/noobs-e-stacktraces/)
 
