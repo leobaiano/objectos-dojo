@@ -20,6 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -42,14 +43,10 @@ public class TesteDeConversaoTxt {
     conversor = new ConversorTxt();
   }
 
-  private static String getCaminho() {
-    return "/home/afilgueiras/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/Campeao.txt";
-  }
-
   public void lista_deve_conter_elementos_do_arquivo() throws IOException {
-    InputStream stream = new FileInputStream(getCaminho());
+    InputStream arquivo = obterStream("Campeao.txt");
 
-    List<Campeoes> res = conversor.retornaCampeoes(stream);
+    List<Campeao> res = conversor.retornaCampeoes(arquivo);
 
     assertThat(res.size(), equalTo(3));
 
@@ -64,16 +61,34 @@ public class TesteDeConversaoTxt {
     assertThat(times.get(2), equalTo("Flamengo"));
   }
 
-  private class ToAno implements Function<Campeoes, Integer> {
+  public void arquivo_nao_deve_existir() throws IOException {
+    FileInputStream arquivo;
+    try {
+      arquivo = new FileInputStream("ArquivoNaoExistente.txt");
+      List<Campeao> campeoes = conversor.retornaCampeoes(arquivo);
+    } catch (FileNotFoundException e) {
+      System.out.println();
+      System.out.println("\n----- 404 ARQUIVO NÃO ENCONTRADO 404 -----");
+      System.out.println();
+    }
+  }
+
+  private InputStream obterStream(String nome) {
+    ClassLoader classLoader = getClass().getClassLoader();
+
+    return classLoader.getResourceAsStream("txt/" + nome);
+  }
+
+  private class ToAno implements Function<Campeao, Integer> {
     @Override
-    public Integer apply(Campeoes input) {
+    public Integer apply(Campeao input) {
       return input.getAno();
     }
   }
 
-  private class ToTime implements Function<Campeoes, String> {
+  private class ToTime implements Function<Campeao, String> {
     @Override
-    public String apply(Campeoes input) {
+    public String apply(Campeao input) {
       return input.getTime();
     }
   }

@@ -26,44 +26,24 @@ import java.util.List;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class ConversorV2 implements Conversor {
+public class ConversorTxtEmLista {
 
-  public List<String> arquivo(InputStream stream) throws IOException {
-    List<String> texto = newArrayList();
+  public List<String> converteEmLista(InputStream texto) throws IOException {
+    List<String> lista = newArrayList();
 
-    InputStreamReader arquivo = new InputStreamReader(stream);
+    InputStreamReader arquivo = new InputStreamReader(texto);
     BufferedReader reader = new BufferedReader(arquivo);
-    String linha = reader.readLine();
+    String linha;
+    linha = reader.readLine();
 
     while (linha != null) {
-      texto.add(linha);
+      lista.add(linha);
       linha = reader.readLine();
     }
 
     arquivo.close();
 
-    return texto;
-  }
-
-  @Override
-  public List<Campeoes> retornaCampeoes(InputStream stream) throws IOException {
-    List<String> lista = arquivo(stream);
-    List<Campeoes> listaDeCampeoes = newArrayList();
-
-    for (String string : lista) {
-      String[] colunas = string.split(";");
-
-      String col0 = colunas[0];
-      String col1 = colunas[1];
-
-      int ano = Integer.parseInt(col0.toString());
-      String time = col1.toString();
-
-      Campeoes campeao = new Campeoes(ano, time);
-      listaDeCampeoes.add(campeao);
-    }
-
-    return listaDeCampeoes;
+    return lista;
   }
 
 }

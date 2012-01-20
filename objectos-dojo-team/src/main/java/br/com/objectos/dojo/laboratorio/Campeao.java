@@ -15,15 +15,13 @@
 */
 package br.com.objectos.dojo.laboratorio;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public interface Conversor {
+public interface Campeao {
 
-  public List<Campeao> retornaCampeoes(InputStream arquivo) throws IOException;
+  public Integer getAno();
+
+  public String getTime();
 
 }
