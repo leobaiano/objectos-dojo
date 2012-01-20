@@ -26,45 +26,32 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 /**
- * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
+ * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-public class ConversorV2 implements Conversor {
+public class ConversorV3Teste implements ConversorTeste {
 
-  public List<String> arquivo(InputStream stream) throws IOException {
-    List<String> texto = newArrayList();
+  @Override
+  public ImmutableList<Campeao> arquivo(InputStream stream) throws IOException {
+    List<Campeao> listaDeCampeoes = newArrayList();
 
     InputStreamReader arquivo = new InputStreamReader(stream);
     BufferedReader reader = new BufferedReader(arquivo);
     String linha = reader.readLine();
 
     while (linha != null) {
-      texto.add(linha);
-      linha = reader.readLine();
-    }
-
-    arquivo.close();
-
-    return texto;
-  }
-
-  @Override
-  public ImmutableList<Campeao> retornaCampeoes(InputStream stream) throws IOException {
-    List<String> lista = arquivo(stream);
-    List<Campeao> listaDeCampeoes = newArrayList();
-
-    for (String string : lista) {
+      String string = reader.readLine();// atualiza
       String[] colunas = string.split(";");
 
       Campeao campeao = new Construtor(colunas).novaInstancia();
       listaDeCampeoes.add(campeao);
+
+      colunas = null;
+      campeao = null;
     }
 
-    return ImmutableList.copyOf(listaDeCampeoes);
-  }
+    arquivo.close();
 
-  @Override
-  public String toString() {
-    return "v2";
+    return ImmutableList.copyOf(listaDeCampeoes);
   }
 
   private class Construtor implements Campeao.Construtor {

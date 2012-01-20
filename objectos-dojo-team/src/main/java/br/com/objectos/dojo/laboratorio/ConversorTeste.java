@@ -17,13 +17,14 @@ package br.com.objectos.dojo.laboratorio;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+
+import com.google.common.collect.ImmutableList;
 
 /**
- * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
+ * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-public interface Conversor {
+public interface ConversorTeste {
 
-  List<Campeao> retornaCampeoes(InputStream stream) throws IOException;
+  public ImmutableList<Campeao> arquivo(InputStream stream) throws IOException;
 
 }

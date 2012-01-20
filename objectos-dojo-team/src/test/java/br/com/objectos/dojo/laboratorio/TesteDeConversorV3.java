@@ -24,37 +24,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.google.common.base.Function;
 
 /**
- * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
+ * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-@Test(groups = "quebrados")
-public class TesteDeConversaoTxt {
+@Test
+public class TesteDeConversorV3 {
+
+  private ConversorTeste conversor;
+
+  @BeforeClass
+  public void carregaConversor() {
+    conversor = new ConversorV3Teste();
+  }
 
   private static String getCaminho() {
     return "/home/mpiazzolla/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/Campeao.txt";
   }
 
-  @DataProvider
-  public Object[][] conversores() {
-    return new Object[][] {
-        {
-            new ConversorV2()
-        },
-        {
-            new ConversorTxt()
-        } };
-  }
-
-  @Test(dataProvider = "conversores")
-  public void lista_deve_conter_elementos_do_arquivo(Conversor conversor) throws IOException {
+  public void lista_deve_conter_elementos_do_arquivo() throws IOException {
     InputStream stream = new FileInputStream(getCaminho());
 
-    List<Campeao> res = conversor.retornaCampeoes(stream);
+    List<Campeao> res = conversor.arquivo(stream);
 
     assertThat(res.size(), equalTo(3));
 

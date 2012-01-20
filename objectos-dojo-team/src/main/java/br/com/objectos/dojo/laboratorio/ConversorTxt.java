@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class ConversorTxt {
+public class ConversorTxt implements Conversor {
 
   public List<String> arquivo(InputStream stream) throws IOException {
     List<String> texto = newArrayList();
@@ -45,9 +45,10 @@ public class ConversorTxt {
     return texto;
   }
 
-  public List<Campeoes> retornaCampeoes(InputStream stream) throws IOException {
+  @Override
+  public List<Campeao> retornaCampeoes(InputStream stream) throws IOException {
     List<String> lista = arquivo(stream);
-    List<Campeoes> listaDeCampeoes = newArrayList();
+    List<Campeao> listaDeCampeoes = newArrayList();
 
     for (String string : lista) {
       String[] colunas = string.split(";");
@@ -55,11 +56,56 @@ public class ConversorTxt {
       String col0 = colunas[0];
       String col1 = colunas[1];
 
-      int ano = Integer.parseInt(col0.toString());
-      String time = col1.toString();
+      int ano = Integer.parseInt(col0);
+      String time = col1;
+
+      Campeao campeao = new Construtor(ano, time).novaInstancia();
+      listaDeCampeoes.add(campeao);
     }
 
     return listaDeCampeoes;
+  }
+
+  private class Construtor implements Campeao.Construtor {
+
+    private final int ano;
+    private final String time;
+
+    public Construtor(int ano, String time) {
+      this.ano = ano;
+      this.time = time;
+    }
+
+    @Override
+    public Campeao novaInstancia() {
+      return new Campeoes(this);
+    }
+
+    @Override
+    public Integer getAno() {
+      return ano;
+    }
+
+    @Override
+    public String getTime() {
+      return time;
+    }
+
+    @Override
+    public int getSaldo() {
+      return 0;
+    }
+
+    @Override
+    public int getPontos() {
+      return 0;
+    }
+
+  }
+
+  @Override
+  public String toString() {
+    return "v1";
   }
 
 }
