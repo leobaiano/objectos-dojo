@@ -18,7 +18,7 @@ package br.com.objectos.dojo.laboratorio;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class Campeoes {
+public class Campeoes implements Campeao {
 
   private final Integer ano;
   private final String time;
@@ -28,10 +28,12 @@ public class Campeoes {
     this.time = time;
   }
 
+  @Override
   public Integer getAno() {
     return ano;
   }
 
+  @Override
   public String getTime() {
     return time;
   }
