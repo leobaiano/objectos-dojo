@@ -22,10 +22,12 @@ public class Campeoes implements Campeao {
 
   private final Integer ano;
   private final String time;
+  private final String treinador;
 
-  public Campeoes(Integer ano, String time) {
-    this.ano = ano;
-    this.time = time;
+  public Campeoes(Campeao.Construtor construtor) {
+    this.ano = construtor.getAno();
+    this.time = construtor.getTime();
+    this.treinador = construtor.getTreinador();
   }
 
   @Override
@@ -36,6 +38,11 @@ public class Campeoes implements Campeao {
   @Override
   public String getTime() {
     return time;
+  }
+
+  @Override
+  public String getTreinador() {
+    return treinador;
   }
 
 }

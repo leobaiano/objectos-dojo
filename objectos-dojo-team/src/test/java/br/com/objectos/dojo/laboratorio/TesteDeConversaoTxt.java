@@ -15,12 +15,11 @@
 */
 package br.com.objectos.dojo.laboratorio;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Lists.transform;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -43,6 +42,23 @@ public class TesteDeConversaoTxt {
     conversor = new ConversorTxt();
   }
 
+  public void separador_de_coluna_deve_funcionar() {
+    List<String> lista = newArrayList();
+
+    lista.add("2011;Corinthians;Tite");
+
+    SeparadorDeColunaDeCampeao separador = new SeparadorDeColunaDeCampeao();
+
+    List<Campeao> res = separador.separaColuna(lista);
+    assertThat(res.size(), equalTo(1));
+
+    List<Integer> anos = transform(res, new ToAno());
+    assertThat(anos.get(0), equalTo(2011));
+
+    List<String> times = transform(res, new ToTime());
+    assertThat(times.get(0), equalTo("Corinthians"));
+  }
+
   public void lista_deve_conter_elementos_do_arquivo() throws IOException {
     InputStream arquivo = obterStream("Campeao.txt");
 
@@ -59,18 +75,6 @@ public class TesteDeConversaoTxt {
     assertThat(times.get(0), equalTo("Corinthians"));
     assertThat(times.get(1), equalTo("Fluminense"));
     assertThat(times.get(2), equalTo("Flamengo"));
-  }
-
-  public void arquivo_nao_deve_existir() throws IOException {
-    FileInputStream arquivo;
-    try {
-      arquivo = new FileInputStream("ArquivoNaoExistente.txt");
-      List<Campeao> campeoes = conversor.retornaCampeoes(arquivo);
-    } catch (FileNotFoundException e) {
-      System.out.println();
-      System.out.println("\n----- 404 ARQUIVO NÃO ENCONTRADO 404 -----");
-      System.out.println();
-    }
   }
 
   private InputStream obterStream(String nome) {

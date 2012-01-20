@@ -15,12 +15,8 @@
 */
 package br.com.objectos.dojo.laboratorio;
 
-import static com.google.common.collect.Lists.newArrayList;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 /**
@@ -28,42 +24,14 @@ import java.util.List;
  */
 public class ConversorTxt implements Conversor {
 
-  public List<String> arquivo(InputStream stream) throws IOException {
-    List<String> texto = newArrayList();
-
-    InputStreamReader arquivo = new InputStreamReader(stream);
-    BufferedReader reader = new BufferedReader(arquivo);
-    String linha = reader.readLine();
-
-    while (linha != null) {
-      texto.add(linha);
-      linha = reader.readLine();
-    }
-
-    arquivo.close();
-
-    return texto;
-  }
-
   @Override
-  public List<Campeoes> retornaCampeoes(InputStream stream) throws IOException {
-    List<String> lista = arquivo(stream);
-    List<Campeoes> listaDeCampeoes = newArrayList();
+  public List<Campeao> retornaCampeoes(InputStream arquivo) throws IOException {
 
-    for (String string : lista) {
-      String[] colunas = string.split(";");
+    ConverteTxtEmLista conversor = new ConverteTxtEmLista();
+    List<String> lista = conversor.converteEmLista(arquivo);
 
-      String col0 = colunas[0];
-      String col1 = colunas[1];
-
-      int ano = Integer.parseInt(col0.toString());
-      String time = col1.toString();
-
-      Campeoes campeao = new Campeoes(ano, time);
-      listaDeCampeoes.add(campeao);
-    }
-
-    return listaDeCampeoes;
+    SeparadorDeColunaDeCampeao separar = new SeparadorDeColunaDeCampeao();
+    return separar.separaColuna(lista);
   }
 
 }

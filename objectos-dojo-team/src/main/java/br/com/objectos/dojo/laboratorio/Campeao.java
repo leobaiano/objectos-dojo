@@ -15,13 +15,27 @@
 */
 package br.com.objectos.dojo.laboratorio;
 
+import com.google.common.base.Supplier;
+
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
 public interface Campeao {
 
-  public Integer getAno();
+  interface Construtor extends Supplier<Campeao> {
 
-  public String getTime();
+    Integer getAno();
+
+    String getTime();
+
+    String getTreinador();
+
+  }
+
+  Integer getAno();
+
+  String getTime();
+
+  String getTreinador();
 
 }

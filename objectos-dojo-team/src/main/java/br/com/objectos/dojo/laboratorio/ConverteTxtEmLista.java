@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class ConversorTxtEmLista {
+public class ConverteTxtEmLista {
 
   public List<String> converteEmLista(InputStream texto) throws IOException {
     List<String> lista = newArrayList();
