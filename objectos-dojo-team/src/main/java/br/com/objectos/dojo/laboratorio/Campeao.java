@@ -15,15 +15,29 @@
 */
 package br.com.objectos.dojo.laboratorio;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public interface Conversor {
+public interface Campeao {
 
-  public abstract List<Campeao> retornaCampeoes(InputStream stream) throws IOException;
+  interface Construtor extends br.com.objectos.dojo.mpiazzolla.base.Construtor<Campeao> {
+
+    Integer getAno();
+
+    String getTime();
+
+    int getSaldo();
+
+    int getPontos();
+
+  }
+
+  Integer getAno();
+
+  String getTime();
+
+  int getSaldo();
+
+  int getPontos();
 
 }

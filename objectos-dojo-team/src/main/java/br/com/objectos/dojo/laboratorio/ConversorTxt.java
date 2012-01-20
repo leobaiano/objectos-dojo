@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class ConversorTxt implements Conversor {
+public class ConversorTxt {
 
   public List<String> arquivo(InputStream stream) throws IOException {
     List<String> texto = newArrayList();
@@ -45,7 +45,6 @@ public class ConversorTxt implements Conversor {
     return texto;
   }
 
-  @Override
   public List<Campeoes> retornaCampeoes(InputStream stream) throws IOException {
     List<String> lista = arquivo(stream);
     List<Campeoes> listaDeCampeoes = newArrayList();
@@ -58,9 +57,6 @@ public class ConversorTxt implements Conversor {
 
       int ano = Integer.parseInt(col0.toString());
       String time = col1.toString();
-
-      Campeoes campeao = new Campeoes(ano, time);
-      listaDeCampeoes.add(campeao);
     }
 
     return listaDeCampeoes;

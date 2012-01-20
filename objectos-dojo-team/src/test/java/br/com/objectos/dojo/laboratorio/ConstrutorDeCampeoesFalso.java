@@ -18,18 +18,36 @@ package br.com.objectos.dojo.laboratorio;
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public class Campeoes implements Campeao {
+public class ConstrutorDeCampeoesFalso implements Campeao.Construtor {
 
-  private final Integer ano;
-  private final String time;
-  private final int saldo;
-  private final int pontos;
+  private Integer ano;
+  private String time;
+  private int saldo;
+  private int pontos;
 
-  public Campeoes(Campeao.Construtor construtor) {
-    this.ano = construtor.getAno();
-    this.time = construtor.getTime();
-    this.saldo = construtor.getSaldo();
-    this.pontos = construtor.getPontos();
+  @Override
+  public Campeao novaInstancia() {
+    return new Campeoes(this);
+  }
+
+  public ConstrutorDeCampeoesFalso ano(Integer ano) {
+    this.ano = ano;
+    return this;
+  }
+
+  public ConstrutorDeCampeoesFalso time(String time) {
+    this.time = time;
+    return this;
+  }
+
+  public ConstrutorDeCampeoesFalso saldo(int saldo) {
+    this.saldo = saldo;
+    return this;
+  }
+
+  public ConstrutorDeCampeoesFalso pontos(int pontos) {
+    this.pontos = pontos;
+    return this;
   }
 
   @Override

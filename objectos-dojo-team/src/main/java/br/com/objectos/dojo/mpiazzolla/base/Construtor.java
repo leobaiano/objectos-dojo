@@ -13,17 +13,13 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.laboratorio;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
+package br.com.objectos.dojo.mpiazzolla.base;
 
 /**
  * @author afonso.filgueiras@objectos.com.br (Afonso J. Filgueiras)
  */
-public interface Conversor {
+public interface Construtor<T> {
 
-  public abstract List<Campeao> retornaCampeoes(InputStream stream) throws IOException;
+  T novaInstancia();
 
 }

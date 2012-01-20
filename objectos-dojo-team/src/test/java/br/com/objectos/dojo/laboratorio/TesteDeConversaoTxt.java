@@ -39,17 +39,17 @@ public class TesteDeConversaoTxt {
 
   @BeforeClass
   public void carregaConversor() {
-    conversor = new ConversorTxt();
+    conversor = new ConversorV2();
   }
 
   private static String getCaminho() {
-    return "/home/afilgueiras/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/Campeao.txt";
+    return "/home/mpiazzolla/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/Campeao.txt";
   }
 
   public void lista_deve_conter_elementos_do_arquivo() throws IOException {
     InputStream stream = new FileInputStream(getCaminho());
 
-    List<Campeoes> res = conversor.retornaCampeoes(stream);
+    List<Campeao> res = conversor.retornaCampeoes(stream);
 
     assertThat(res.size(), equalTo(3));
 
@@ -62,19 +62,43 @@ public class TesteDeConversaoTxt {
     assertThat(times.get(0), equalTo("Corinthians"));
     assertThat(times.get(1), equalTo("Fluminense"));
     assertThat(times.get(2), equalTo("Flamengo"));
+
+    List<Integer> saldos = transform(res, new ToSaldo());
+    assertThat(saldos.get(0), equalTo(49));
+    assertThat(saldos.get(1), equalTo(48));
+    assertThat(saldos.get(2), equalTo(40));
+
+    List<Integer> pontos = transform(res, new ToPontos());
+    assertThat(pontos.get(0), equalTo(70));
+    assertThat(pontos.get(1), equalTo(100));
+    assertThat(pontos.get(2), equalTo(89));
   }
 
-  private class ToAno implements Function<Campeoes, Integer> {
+  private class ToAno implements Function<Campeao, Integer> {
     @Override
-    public Integer apply(Campeoes input) {
+    public Integer apply(Campeao input) {
       return input.getAno();
     }
   }
 
-  private class ToTime implements Function<Campeoes, String> {
+  private class ToTime implements Function<Campeao, String> {
     @Override
-    public String apply(Campeoes input) {
+    public String apply(Campeao input) {
       return input.getTime();
+    }
+  }
+
+  private class ToSaldo implements Function<Campeao, Integer> {
+    @Override
+    public Integer apply(Campeao input) {
+      return input.getSaldo();
+    }
+  }
+
+  private class ToPontos implements Function<Campeao, Integer> {
+    @Override
+    public Integer apply(Campeao input) {
+      return input.getPontos();
     }
   }
 

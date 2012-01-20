@@ -46,24 +46,57 @@ public class ConversorV2 implements Conversor {
   }
 
   @Override
-  public List<Campeoes> retornaCampeoes(InputStream stream) throws IOException {
+  public List<Campeao> retornaCampeoes(InputStream stream) throws IOException {
     List<String> lista = arquivo(stream);
-    List<Campeoes> listaDeCampeoes = newArrayList();
+    List<Campeao> listaDeCampeoes = newArrayList();
 
     for (String string : lista) {
       String[] colunas = string.split(";");
 
-      String col0 = colunas[0];
-      String col1 = colunas[1];
-
-      int ano = Integer.parseInt(col0.toString());
-      String time = col1.toString();
-
-      Campeoes campeao = new Campeoes(ano, time);
+      Campeao campeao = new Construtor(colunas).novaInstancia();
       listaDeCampeoes.add(campeao);
     }
 
     return listaDeCampeoes;
+  }
+
+  private class Construtor implements Campeao.Construtor {
+
+    private final String[] arrayDeCampeoes;
+
+    public Construtor(String[] arrayDeCampeos) {
+      this.arrayDeCampeoes = arrayDeCampeos;
+    }
+
+    @Override
+    public Campeao novaInstancia() {
+      return new Campeoes(this);
+    }
+
+    @Override
+    public Integer getAno() {
+      return stringToInt(arrayDeCampeoes[0]);
+    }
+
+    @Override
+    public String getTime() {
+      return arrayDeCampeoes[1];
+    }
+
+    @Override
+    public int getSaldo() {
+      return stringToInt(arrayDeCampeoes[2]);
+    }
+
+    @Override
+    public int getPontos() {
+      return stringToInt(arrayDeCampeoes[3]);
+    }
+
+    private int stringToInt(String val) {
+      return Integer.parseInt(val);
+    }
+
   }
 
 }
