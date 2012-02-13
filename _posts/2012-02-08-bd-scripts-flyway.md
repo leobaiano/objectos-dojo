@@ -5,7 +5,8 @@ author: "Hellen Escarate"
 user: "hescarate"
 published: true
 tags:
-- flyway migration 
+- flyway migration
+- flyway
 - procedimento
 - script flyway 
 - mysql
@@ -22,17 +23,18 @@ No diretório src/main/resources/db/migration/
 ### Como deve ser nomeado? 
 
 As migrações SQL devem seguir um padrão de nomenclatura: 
-como por exemplo: V1_adicionando_nova_tabela.sql:
+como por exemplo: V1__adicionando_nova_tabela.sql:
 
 V = prefixo
 1 = versão
+__ = separador: é formado por dois underscores, se a descrição estiver presente. 
 adicionando_nova_tabela = descrição
 .sql = sufixo
 
 ATENÇÃO:
 NUNCA editar um arquivo existente, ainda que esteja errado.
 Se for necessário fazer alterações, crie um novo script:
-V2_corrigindo_a_tabela.sql
+V2__corrigindo_a_tabela.sql
 
 ### Exemplo de script
 
