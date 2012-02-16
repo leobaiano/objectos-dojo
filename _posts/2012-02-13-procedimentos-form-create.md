@@ -6,52 +6,57 @@ user: "hescarate"
 published: true
 tags: 
 - procedimento
+- form create
 ---
 
-## Entendendo TesteDeFormCreate
+## FormCreate
 
-1) Entender o problema do mundo real, de fato o que deve ser feito.
+### Caso de uso
 
-ex: Cadastrar alunos para uma determinada instituição de ensino.  
-Partindo do ponto em que o cliente já vai estar na página que lista as instituições de ensino, e deve cadastrar alunos
-para uma determinada instituição. 
-pensar na url: "api/crud/instituicao/1/alunos"
+Tomado como exemplo o cadastro de alunos para uma determinada instituição, será necessário implementar o
+FormDeAlunosCreate. 
 
-2) Pensar em quais dados o cliente precisará cadastrar, por exemplo:
-nome e cpf; 
+Mas antes de partir para o código, é importante analisar o que será feito.
+1 - Como seria essa url?
+2 - Que dados devem ser cadastrados pelo cliente?
 
-3) No método form_deve_gravar_no_bd:
-a) deve ser simulado os dados que o cliente vai entrar, ex:
-int cpf = 999.999.999-99
-String nome = AlunoA; 
+### Procedimento: 
 
-Pensando nesses dados, o que seria importante para gravar esse cadastro no banco de dados?
-- pode ser cadastrado um cpf que já existe?
-- qual a condição para cadastrar um novo cpf (aluno)?
+1- Criar a classe TesteDeFormDeAlunosCreate, o pacote deve ser ui.api.crud, no diretório de teste. 
 
+2- Inserir a anotação @Test
 
+3- Estender o TesteDeFormAbstratoCreate. Caso não exista, é necessário criá-lo. 
 
-1 - Inserir a anotação @Test
+4- Feito o item 3, pode ser observado erro de compilação, então deve ser usado CRTL+1 p/ adicionar os
+métodos não implementados.
 
-2 - extends TesteDeFormAbstratoCreate.
-Caso não exista, é necessário criá-lo. 
-
-3 - depois do item anterior pode ser observado erro de compilação, portanto use CRTL+1 p/ adicionar os métodos não
-implementados.
-
-4 - Caso necessário chame o buscador.
-
-5 - No método que foi implementado depois de usar o CTRL+1, insira a URL: ]
+5- No método que foi implementado depois de usar o CTRL+1, insira a URL:
 
 ```
   @Override
     String URL() {
-        return "api/crud/plano/1/politica_investimento";
+        return "api/crud/instituicao_ensino/1/alunos";
     }
 ```
 
 
-6 - Se agora for rodado o teste, certamente no console aparecerá o erro 404, pois a URL não foi encontrada, então o
+6- Se agora for rodado o teste, na aba "results of running" (no eclipse) devem aparecer quatro testes. Dois que
+passaram e dois que não passaram. No console aparecerá o erro 404, pois a URL não foi encontrada, então o
 próximo passo é adicionar a URL no Módulo. 
 
-..... procedimento....... 
+
+```
+private void bindApiCrud() {
+    at("/api/crud/instituicao_ensino/:id/alunos").serve(FormDeAlunosCreate.class);
+}
+``` 
+
+7- Feito isso, deve aparecer erro de compilação, pois o FormDeAlunosCreate não existe, e como bons programadores tem
+boas práticas, codificamos por TDD, portanto, use CRTL+1 e escolha "Create class FormDeAlunosCreate".
+Um detalhe importante é atentar para o pacote correto, deve ser o mesmo pacote do Teste porém no diretório main.  
+
+(se não souber o que é isso, veja o artigo sobre TDD). 
+
+
+
