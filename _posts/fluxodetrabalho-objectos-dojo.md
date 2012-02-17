@@ -221,6 +221,7 @@ Auto-regenerating enabled: . -> ./_site
 [2011-09-12 16:31:35] INFO  WEBrick::HTTPServer#start: pid=4461 port=4000
 ```
 
+Obs: O comando deve ser rodado no diretório da raiz, na branch gh-pages. 
 
 Agora no navegador aponte para o endereço:
 
@@ -259,6 +260,8 @@ tags:
 Depois de concluir a nova página / artigo é necessário que isso seja revisado antes de ir oficialmente para o "ar",
 portanto, é preciso fazer um **Pull Request** (em caso de dúvidas consulte o tutorial sobre Pull Request).
 
+
+Obs: dicas de sintaxe p/ o artigo podem ser encontradas no link: http://daringfireball.net/projects/markdown/syntax#hr
 
 ## Referências
 
