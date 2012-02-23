@@ -26,3 +26,4 @@ Obs: obviamente substitua os dados por:
 * USUARIO : o usuário correto no banco de dados
 * SENHA : a senha no MySQL para o usuário
 * NOME_BANCO_DE_DADOS : o banco de dados para o qual o backup será feito 
+
