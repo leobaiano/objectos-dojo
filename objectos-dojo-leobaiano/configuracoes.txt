@@ -1,2 +1,4 @@
 Inserindo uma linha de teste!
 inserindo a segunda linha
+.
+Inserindo a linha 3.
